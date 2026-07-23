@@ -1,32 +1,76 @@
-TechStore
-MODULO 4 - UNIDAD 1
 
-SQL SELECT Fundamentals
-Este repositorio contiene la solución a la práctica guiada de extracción de datos y formateo con consultas SQL (SELECT) para el equipo de Finanzas de TechStore.
+# RetailPro 
 
-Estructura del Repositorio
-sql-select-fundamentals/
-├── consultas_basicas.sql
-└── README.md
+# Repositorio del Proyecto de Data Analytics
+# Base de Datos: PostgreSQL
+# Herramienta SQL: VS Code - Extensión PostgreSQL (por Chris Kolkman)
+# Control de Versiones: Git & GitHub
 
-Respuestas a Preguntas Técnicas y Documentación
-1. ¿Por qué es una mala práctica utilizar SELECT * en entornos de producción?
+Este repositorio contiene la solución completa para la extracción de datos, modelado relacional y análisis de métricas clave de negocio para el equipo comercial y financiero de RetailPro, utilizando PostgreSQL sobre la base de datos Ventas_Tech_DB.
 
-    Aunque SELECT * es una herramienta útil para explorar la estructura de una tabla durante la fase de desarrollo local, su uso en entornos productivos se considera una mala práctica debido a tres razones fundamentales:
+---
 
-    Impacto en el Rendimiento y Uso de Memoria: Al solicitar todas las columnas de una tabla, el motor de la base de datos debe realizar operaciones de lectura adicionales en disco y transferir más datos a través de la red. Si la tabla contiene millones de registros o campos pesados, esto degrada severamente el tiempo de respuesta.
+## Estructura del Repositorio
 
-    Fragilidad del Código y Mantenibilidad: Si la estructura de la tabla cambia en el futuro (por ejemplo, si se agregan, eliminan o reordenan columnas), las aplicaciones que consuman la consulta pueden romper sus procesos automáticos al recibir un número inesperado de campos.
+Data-Analytics/
+RetailPro/
+    Ventas_Tech_DB.sql
+    m4_consultas_negocio.sql
+Optimizacion/
+    optimizacion_y_consultas.sql
+Ejercicios_Previos/
+    consultas_basicas.sql
+README.md
 
-    Seguridad e Integridad de Datos: SELECT * expone la totalidad de la tabla, lo que podría filtrar involuntariamente campos sensibles o confidenciales a usuarios o reportes que no deberían tener acceso a ellos.
+---
 
-2. ¿Por qué son importantes los alias (AS) para un stakeholder no técnico?
-   
-   Los stakeholders de negocio (como los analistas del área financiera) no están obligados a conocer las convenciones de nombres técnicas, abreviaciones o códigos de las bases de datos. Los alias (AS) permiten traducir términos de desarrollo a un lenguaje comprensible de cara al negocio.
+## Módulos Desarrollados
 
-Ejemplo:
+### Módulo 3: Ingeniería y Modelo de Datos.
 
-    Sin alias: Si ejecutamos "SELECT total_amount FROM sales;", el reporte mostrará en la cabecera "total_amount". Para un analista financiero, esto puede prestarse a ambigüedades: ¿es el monto bruto, el monto con impuestos o el costo de producción?
+* Diseño e implementación DDL de la base de datos relacional `Ventas_Tech_DB` en PostgreSQL.
 
-    Con alias: Si ejecutamos "SELECT total_amount AS monto_total_facturado FROM sales;", el reporte presenta una etiqueta clara e inconfundible en español: monto_total_facturado, eliminando la necesidad de explicaciones adicionales y permitiendo que Finanzas tome decisiones de forma directa.
+
+* Creación de las tablas `categorias`, `clientes`, `productos` y `ventas` garantizando la integridad referencial mediante claves PK y FK.
+
+
+* Carga masiva de datos iniciales DML para simular transacciones reales de comercio electrónico.
+
+
+
+### Módulo 4: Consultas de Negocio y Resumen.
+
+Desarrollo del script `m4_consultas_negocio.sql` orientado a responder preguntas estratégicas mediante las funciones de: agregar `COUNT`, `SUM`, `AVG`, agrupar `GROUP BY`, `HAVING` y condición `CASE WHEN`.
+
+1. **Resumen Ejecutivo Mensual:** Cálculo del total facturado, cantidad de pedidos y ticket promedio por mes.
+2. **Ranking de Productos Top 5:** Identificación de los 5 productos con mayor facturación y volumen de unidades vendidas.
+3. **Clientes Recurrentes:** Filtrado de clientes con más de un pedido registrado para medir la fidelidad.
+4. **Comparativa de Performance Mensual:** Clasificación de los meses que quedaron de más o ménos del promedio mensual general utilizando `WITH`.
+5. **Hallazgos de Negocio:** Documentación analítica con 3 conclusiones clave derivadas de las consultas.
+
+---
+
+## Respuestas Técnicas
+
+### 1. ¿Por qué evitar `SELECT *` en producción?
+
+* **Rendimiento:** Sobrecarga el disco y la red al traer datos innecesarios.
+* **Fragilidad:** Si la tabla cambia de estructura, las aplicaciones asociadas se rompen.
+* **Seguridad:** Expone campos sensibles o confidenciales innecesariamente.
+
+### 2. ¿Por qué usar alias `AS` para el negocio?
+
+Simple. Traducen términos técnicos a un lenguaje claro para los analistas y gerentes.
+
+* **Sin alias:** `total_amount` que genera ambigüedad.
+* **Con alias:** `total_amount AS total_facturado` es claro, directo e inconfundible.
+
+---
+
+
+
+
+
+
+
 
